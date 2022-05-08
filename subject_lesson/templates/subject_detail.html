@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div style="text-align: center;">
+        <h1>{{ subject_lesson.title }}</h1>
+        <video style="margin: 0 0 0 0" width="1200" height="720" controls>
+            <source src="{{ subject_lesson.video.url }}" type="video/mp4">
+            <source src="movie.ogg" type="video/ogg">
+            Your browser does not support the video tag.
+        </video>
+        <br>
+        <br>
+        <h6>{{ subject_lesson.description }}</h6>
+    </div>
+{% endblock %}

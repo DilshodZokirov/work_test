@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1>Create Subject</h1>
+    <form class="ui form" enctype="multipart/form-data" method="POST">
+        {#        <form method="post" enctype="multipart/form-data" action="{% url 'organization:org_create' %}">#}
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="{{ form.title.id_for_label }}"
+                   class="form-label">{{ form.title.label }}</label>
+            {{ form.title }}
+        </div>
+        <div class="mb-3">
+            <label for="{{ form.description.id_for_label }}" class="form-label">{{ form.description.label }}</label>
+            {{ form.description }}
+        </div>
+        <div class="mb-3">
+            <label for="{{ form.video.id_for_label }}"
+                   class="form-label">{{ form.video.label }}</label>
+            {{ form.video }}
+        </div>
+        <button class="btn btn-success" type="submit">Submit</button>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+{% block content %}
+    {% if request.user.employee.user_type == "MENTOR" %}
+        <div style="margin: 5px 20px;">
+            <a type="button" href="{% url "subject:create_subject" category.id %}" class="btn btn-success">Create
+                Lesson</a>
+        </div>
+    {% else %}
+        {% if user.employee.user_type == "STUDENT" or user.employee.user_type == "MENTOR_OR_STUDENT" %}
+            {% if  category_user %}
+            {% else %}
+                <h5 style="margin: 5px 1820px;"><a
+                        class="btn btn-success"
+                        href="{% url 'category:create_category_user' category.id %}">Register</a>
+                </h5>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+
+    {#    <br>#}
+    <span style="margin: 40px 880px">Students: {{ user_count }}</span>
+    <div style="margin: 5px 20px; border:2px solid">
+        {% for subject in subject_lesson %}
+            {% if request.user.employee.user_type == "MENTOR" %}
+                <div style="border: 2px solid;  margin: 10px 10px 5px 5px;">
+                    <h5 style="margin: 10px 10px;"> {{ forloop.counter }}: <a
+                            href="{% url "subject:detail_subject"  cat_id=category.id sub_id=subject.id %}">{{ subject.title }}</a>
+                        <div style="text-align: end;">
+                            <a type="button"
+                               href="{% url "subject:update_subject" subject.id %}"
+                               class="btn btn-warning">Edit</a>
+
+                            ||<a type="button"
+                                 href="{% url "subject:delete_subject_page" pk=subject.id cat_id=category.id %}"
+                                 class="btn btn-danger">Delete</a>
+                        </div>
+                    </h5>
+                </div>
+            {% else %}
+                {% if category_user %}
+                    <h5 style="margin: 10px 10px;"> {{ forloop.counter }}: <a
+                            href="{% url "subject:detail_subject"  cat_id=category.id sub_id=subject.id %}">{{ subject.title }}</a>
+                    </h5>
+                {% else %}
+                    <h5 style="margin: 10px 10px;"> {{ forloop.counter }}: <a
+                            href="">{{ subject.title }}</a>
+                    </h5>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+
+
+    </div>
+{% endblock content %}

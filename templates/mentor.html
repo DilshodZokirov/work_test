@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block title %}
+    Home Page
+{% endblock %}
+{% block content %}
+    <table class="table caption-top">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Description</th>
+            <th scope="col">Update/Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for cat in category %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td><a href="{% url 'category:detail_category' cat_id=cat.id %}">{{ cat.title }}</a></td>
+                <td> {{ cat.description }}</td>
+                <td>
+                    <a href="{% url "category:update_category" cat_id=cat.id %}" type="button" class="btn btn-warning">Edit</a>
+                    <a href="{% url "category:delete_category_page" cat_id=cat.id %}" type=" button"
+                       class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

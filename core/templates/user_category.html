@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+{% block title %}
+    Home Page
+{% endblock %}
+{% block content %}
+    <table class="table caption-top">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Mentor Name</th>
+            <th scope="col">Course</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ user.category_id.created_by.first_name }}{{ user.category_id.created_by.last_name }}</td>
+                <td>
+                    <a href="{% url "category:detail_category" cat_id=user.category_id.pk %}">{{ user.category_id.title }}</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

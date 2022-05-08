@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% block title %}
+    Home Page
+{% endblock %}
+{% block content %}
+    <h4> Oka sizni tekshirmoqda almashtirishsa o'zimiz sizga xabar beramiz !</h4>
+    <table class="table caption-top">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Mentor Name:</th>
+            <th scope="col">Course</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for course in all_category %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ course.created_by.employee.user.first_name }} {{ course.created_by.employee.user.last_name }}</td>
+                <td><a href="{% url "category:detail_category" cat_id=course.id %}">{{ course.title }}</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

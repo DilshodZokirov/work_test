@@ -1,0 +1,9 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1>Delete Subject Lesson</h1>
+    <form action="{% url 'subject:delete_subject' subject.id category.id %}" method="post">{% csrf_token %}
+        <p>"Would you like to delete a subject lesson called {{ category.title }}?" </p>
+        <button class="btn btn-danger ml-2" type="submit">Yes</button>
+    </form>
+{% endblock content %}
